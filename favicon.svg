@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="SJ Jennings">
+  <!-- Classic 4-point concave sparkle: peaks N/E/S/W, valleys between; tilt ~18° like reference -->
+  <g transform="translate(16 16) rotate(18) translate(-16 -16)">
+    <path
+      fill="#b8a4d9"
+      stroke="#2c2420"
+      stroke-width="0.38"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      d="M 16 4.35
+         L 21.85 11.25 L 27.65 16
+         L 21.85 20.75 L 16 27.65
+         L 10.15 20.75 L 4.35 16 L 10.15 11.25 Z" />
+  </g>
+</svg>

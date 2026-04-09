@@ -21,13 +21,17 @@
   --space-md: 1.5rem;
   --space-lg: 2.5rem;
   --space-xl: clamp(2.75rem, 7vw, 4.5rem);
+  /* Matches .wip-banner: border + padding + one line of text */
+  /* Room for one–two wrapped lines on small screens */
+  --wip-banner-height: calc(2px + 0.5rem + 0.5rem + 2.65 * 0.75rem);
   /* Matches .meta-bar: border + inner padding + one line of .meta-bar-inner text */
   --meta-bar-sticky-height: calc(2px + 0.65rem + 0.65rem + 1.6 * 0.8125rem);
   /* Matches .sub-nav: border + link padding + one line of nav text */
   --sub-nav-sticky-height: calc(2px + 0.75rem + 0.75rem + 1.25 * 0.8125rem);
   /* Anchor jumps: sum of sticky bars (no extra buffer — was feeling too tall) */
   --sticky-anchor-offset: calc(
-    var(--meta-bar-sticky-height) + var(--sub-nav-sticky-height)
+    var(--wip-banner-height) + var(--meta-bar-sticky-height) +
+      var(--sub-nav-sticky-height)
   );
   /* Space from sticky sub-nav to section title (~60–80px; scales gently like ref screenshots) */
   --section-top-below-nav: clamp(3.25rem, 4.2vw, 4.25rem);
@@ -92,7 +96,7 @@ body.theme-zine::before {
 
 .skip-link:focus {
   left: var(--space-sm);
-  top: var(--space-sm);
+  top: calc(var(--wip-banner-height) + var(--space-sm));
 }
 
 .wrap {
@@ -100,10 +104,52 @@ body.theme-zine::before {
   margin-inline: auto;
 }
 
+/* ——— Work in progress (sticky top) ——— */
+.wip-banner {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  margin: 0;
+  border-bottom: 2px solid var(--ink);
+  background: var(--mustard);
+  color: var(--ink);
+}
+
+.wip-banner-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs) var(--space-sm);
+  margin-inline: auto;
+  padding-block: 0.5rem;
+  padding-inline: var(--space-md);
+  max-width: var(--max);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.wip-banner-tag {
+  flex-shrink: 0;
+  padding: 0.12em 0.55em;
+  border: 2px solid var(--ink);
+  background: var(--cream);
+  box-shadow: 2px 2px 0 var(--ink);
+  font-weight: 800;
+}
+
+.wip-banner-text {
+  max-width: 52rem;
+}
+
 /* ——— Meta bar ——— */
 .meta-bar {
   position: sticky;
-  top: 0;
+  top: var(--wip-banner-height);
   z-index: 50;
   border-bottom: 2px solid var(--ink);
   background: var(--cream);
@@ -213,7 +259,7 @@ body.theme-zine::before {
   border-bottom: 2px solid var(--ink);
   background: var(--cream);
   position: sticky;
-  top: var(--meta-bar-sticky-height);
+  top: calc(var(--wip-banner-height) + var(--meta-bar-sticky-height));
   z-index: 40;
 }
 
